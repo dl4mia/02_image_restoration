@@ -6,4 +6,4 @@ All installation instructions are contained in the [exercise sheet](https://tiny
 
 _Note_: these instructions are tailored to the installation required on the hardware provided during this course. At home or in any other environment things will very likely have to be slightly modified...
 
-[Return to the main Course page](https://tinyurl.com/7z8jxx2w)
+[Return to the Course's main page](https://tinyurl.com/7z8jxx2w)
