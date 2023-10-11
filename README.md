@@ -2,8 +2,8 @@
 
 
 # Installation
-All installation instructions are contained in the [exercise sheet](https://tinyurl.com/ya7asjsv) or, if you prefer, the PDF version of the exercise sheet.
+All installation instructions are contained in the [exercise sheet](https://tinyurl.com/2mwz84wp) or, if you prefer, the PDF version of the exercise sheet.
 
 _Note_: these instructions are tailored to the installation required on the hardware provided during this course. At home or in any other environment things will very likely have to be slightly modified...
 
-[Return to the Course's main page](https://tinyurl.com/7z8jxx2w)
+[Return to the Course's main page](https://tinyurl.com/33y2b2hk)
