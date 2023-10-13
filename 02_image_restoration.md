@@ -110,7 +110,7 @@ So, last but not least, you need to start a jupyter notebook server.
 
 If it all worked out, you should now see something like this in your browser:
 
-![Screenshot from 2022-07-13 17-05-36.png](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Screenshot_from_2022-07-13_17-05-36.png)
+![Screenshot from 2022-07-13 17-05-36.png](https://file.notion.so/f/s/e714d20c-29e9-4406-a2f8-07d37507798b/Screenshot_from_2022-07-13_17-05-36.png?id=9d56e692-162f-4d9b-9593-3ec3071c1eb0&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=QqsjadQYf9fVZ080pncxbvtlo2k387c9yQeUDdHXcDU&downloadName=Screenshot+from+2022-07-13+17-05-36.png)
 
 ### Setting Tensorboard (optional)
 
@@ -153,7 +153,7 @@ $ ssh -L 6006:localhost:6006 <username>@<vdi_ip>
 
 The GIT repo ‘CSBDeep’ you have previously cloned into ‘~/DL4MIA/CSBDeep’ contains multiple example notebooks:
 
-![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled.png)
+![Untitled](https://file.notion.so/f/s/e9761db8-a0bc-40a7-9953-edd48748085f/Untitled.png?id=914f06a5-def3-42f6-a772-79ace4f9e166&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=P7041d93yhSaFF6p6LNu7mp-l6Xu9x_XJkSsyO5rmFQ&downloadName=Untitled.png)
 
 Every example will be downloading all required training data and is itself divided into three individual notebooks that need to be executed in sequence. The denoising3D example is a good starting point, but you can really pick any of these if you find another one more interesting and more related to your own data.
 
@@ -163,7 +163,7 @@ Every example will be downloading all required training data and is itself divid
 **1_datagen.ipynb** - network training usually happens on batches of smaller sized images than the ones recorded on a microscope. Hence, this notebook loads all your image data and chops it into many smaller pieces and stores it into the sub-folder `data` (you can see that folder on the screenshot below, but likely not yet in your own example folder).
 Open this notebook, read all explanations, execute all cells, ask any questions that come up - then continue below...
 
-![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%201.png)
+![Untitled](https://file.notion.so/f/s/cdd5c737-2e49-42d6-b303-41a6585b20e0/Untitled.png?id=20a2a85c-b0cf-4304-b6ec-f24bd913546b&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=a7yIvhe3K5XUQDC98hdslkbEiTfa6SOUEOnNt0VRKlI&downloadName=Untitled.png)
 
 **2_training.ipynb** - this notebook will train your CARE network. All outputs will be put into the folder `models`. While you execute this notebook, see what files will be generated inside the models-folder.
 
@@ -176,7 +176,7 @@ At the very bottom you see, that we can even even export a so-called *Tensorflow
 
 One good way to do so is by clicking on the ‘**Running**’-tab in Jupyter, then on the orange ‘**Shutdown**’-button next to the notebooks that are not longer needed:
 
-![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%202.png)
+![Untitled](https://file.notion.so/f/s/3d0bc4cd-4889-49b4-a147-37ef2e763214/Untitled.png?id=ffd74798-ec84-4fcd-b241-d07e2cd1ee2a&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=f2WrMHlky7duAhQK2FYwhxX9rgp41GYfsa3tlRwnRVs&downloadName=Untitled.png)
 
 Alternatively, once you are done running a notebook, you should ‘Close and Halt’ from the *File* menu for the same outcome.
 
@@ -239,7 +239,7 @@ In this exercise you will start with raw data and decide for yourself how to tra
     
 4. Open the `training.tif` and save respective images from the stack into the **`train/low`** and **`train/GT`** folders. Use the same name for the input and target images to pair them. You can use Fiji, or the **`imwrite`** function from **`tifffile`:**
     
-    ![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%203.png)
+    ![Untitled](https://file.notion.so/f/s/6ff9be9b-e896-42b3-9e1d-056bff7767ce/Untitled.png?id=8245ef01-fc7a-46fb-aa0e-fe9695e17f07&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=jQddKzD53RShLQdlfHC-Mx-rpbbwnQT__0my6DXyoHA&downloadName=Untitled.png)
     
 5. Modify your **1_datagenSEM.ipynb** to work with your data and run it. 
     
@@ -248,7 +248,7 @@ In this exercise you will start with raw data and decide for yourself how to tra
 6. Make a copy of **2_training.ipynb**, modify it accordingly and train a network on your data.
 7. Make a copy of **3_prediction.ipynb** and modify it accordingly. Open `test.tif`, process it and look at the results for the different acquisition times.
     
-    ![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%204.png)
+    ![Untitled](https://file.notion.so/f/s/0e03a01c-b2da-4794-bd11-569dd8964bd8/Untitled.png?id=4f99dccc-1b97-4aa6-8aa5-ff5050839ee0&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=dGKArwpIAxw7P0_6KZG-AnbS0LB1Q70e0f2kT9qBHuA&downloadName=Untitled.png)
     
 
 - Can you further improve your results by using the data differently or by tweaking the settings?
@@ -381,7 +381,7 @@ For our VDI, we have to slightly change the installation instructions and have t
 
 This exercise sheet will introduce you to [ZeroCostDL4Mic](https://github.com/HenriquesLab/ZeroCostDL4Mic/wiki), a toolbox for the training and implementation of common Deep Learning approaches to microscopy imaging. It exploits the ease-of-use and access to GPU provided by [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb).
 
-![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%205.png)
+![Untitled](https://file.notion.so/f/s/37b358f3-d0c4-4dd6-b4ce-0b64e7512df3/Untitled.png?id=5b3bb74b-10fa-45dc-bd31-370161efbc14&table=block&spaceId=10bcea8c-e347-41c2-830b-9cba925c8c74&expirationTimestamp=1697292000000&signature=yL2Hs5UKO-RbM768FKDG7unrBHHy8e07sja4JQVONXs&downloadName=Untitled.png)
 
 ---
 
