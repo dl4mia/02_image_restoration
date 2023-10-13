@@ -1,6 +1,6 @@
-# 02 - Image Restoration exercises
+# DL4MIA 2023: 02 - Image Restoration exercises
 
-[**Return to the Welcome page**](https://tinyurl.com/7z8jxx2w)
+**[Return to the Welcome page](https://tinyurl.com/33y2b2hk)**
 
 ## Content
 
@@ -32,110 +32,112 @@ Conda environments are useful to keep your workflows running, even if they have 
 
 For the exercises below we will tell you when we suggest creating a new conda environment, but for now, let’s prepare one for CARE, the method we will start playing with in the next exercise.
 
-1. Log in to your VDI, open the terminal and execute the following command
-
+1. Log in to your VDI, open the terminal and execute the following command 
+    
     ```bash
     $ conda create --name care python=3.7
     ```
-
+    
 2. This will create a new `conda` environment called `care`, and initialize it with the specified version of python.
 3. Activate the newly created environment…
-
+    
     ```bash
     $ conda activate care
     ```
-
-4. Now install all you need in this environment. For CARE (the software package is called `csbdeep`), the following should do the trickconda install
-
+    
+4. Now install all you need in this environment. For CARE (the software package is called `csbdeep`), the following should do the trick
+    
     ```bash
-    $ conda install -c conda-forge cudatoolkit=11.3 cudnn jupyter tensorboard nb_conda
+    $ conda install -c conda-forge cudatoolkit=11.3 cudnn jupyter tensorboard 
+    $ conda install jupyter_core=4.6.1
+    $ conda install -c conda-forge nb_conda
     $ pip install tensorflow==2.5 csbdeep
     ```
-
+    
 5. Clone the CSBDeep repository (into the DL4MIA folder previously created) to get the notebooks:
-
+    
     ```bash
     $ git clone https://github.com/CSBDeep/CSBDeep.git
     ```
-
+    
 
 The packages `tensorboard` and `nb_conda` are not strictly required for using `CSBDeep`, but you will see they are super useful to have them. (We will see the utility of `tensorboard` further below, and `nb_conda` allows you to switch between all installed conda environments in a running jupyter instance… yay!)
 So, last but not least, you need to start a jupyter notebook server.
 
 1. In a terminal you open within your VDI, activate the `care` conda environment (see above), then type
-
+    
     ```bash
     $ jupyter notebook
     ```
-
-    A browser should automatically open if you run it within your VDI and you are ready to go!
-
+    
+    A browser should automatically open if you run it within your VDI and you are ready to go! If it doesn’t, you can click the link in the terminal.
+    
     If it asks for a password, check exercise **00_First_steps** on how to to reset it.
-
+    
 
 **If you want to use your local laptop/computer**, it’s a bit more awkward since we need to do it via `ssh`, which needs some extra commands, but totally worth the effort. If you still want to try, run the following steps:
 
 1. Open a new terminal on your local machine, and `ssh` into your VDI by executing a mad looking command:
-
+    
     ```bash
     $ ssh -L 8888:localhost:8888 <username>@<vdi_ip>
     ```
-
+    
     This connects to your VDI through it’s `<vdi_ip>`, logs in there as `<username>` and forwards your local machines port 8888 to the port 8888 of your VDI. Why? You’ll see soon...
-
+    
 2. Connect to your VDI via ssh
-
+    
     ```bash
     $ ssh <username>@<vdi_ip>
     ```
-
+    
 3. And activate the `care` conda environment (see above).
 4. Now start jupyter.
-
+    
     If you want to use the default port for jupyter (8888), executing the following command should do the trick
-
+    
     ```bash
     $ jupyter notebook --no-browser
     ```
-
+    
     In case you need to use another port, *e.g.* because you want to run two jupyter instances on one machine, you can be more explicit and use…
-
+    
     ```bash
     $ jupyter notebook --no-browser --port=<PORT>
     ```
-
+    
 5. Finally, in your browser open the notebook. It should look something like this: *http://localhost:<PORT>/*
 
 If it all worked out, you should now see something like this in your browser:
 
-![Screenshot from 2022-07-13 17-05-36.png](02_image_restoration/Screenshot_from_2022-07-13_17-05-36.png)
+![Screenshot from 2022-07-13 17-05-36.png](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Screenshot_from_2022-07-13_17-05-36.png)
 
 ### Setting Tensorboard (optional)
 
 Tensorboard is a tool used to visualize the evolution of a neural network throughout the training process. It is a very useful tool to inspect all losses and other parameters in your model. If you want to use it, we will need to start a Tensorboard process:
 
-1. Open a new Terminal window within the VDI and browse to the folder where your current model is being saved
-
+1. Open a new Terminal window within the VDI and browse to the folder where your current model is being saved. Note that this folder may not exist until you start training a model (below)
+    
     ```bash
     $ cd dl4mia/gitrepos/path/to/model/folder/
     ```
-
+    
 2. Activate your conda environment once again (as seen above). It should be the same conda environment
-
+    
     ```bash
     $ conda activate care
     ```
-
+    
 3. Now we start Tensorboard by executing the following…
-
+    
     ```bash
     $ tensorboard --logdir=. --port 6006
     ```
-
+    
     In truth, you can start Tensorboard from anywhere by putting the whole path to your model in `--logdir`, but it is easier to browse there first and adding `.` which stand for the current directory.
-
+    
     If you notice, we added the `--port` argument as well. It works exactly as seen in the example above for jupyter. Tensorboard needs another port to be forwarded and 6006 is the default one it uses, however, you are free to choose another one as long as it is free.
-
+    
 
 *In case you are not directly using the VDI but are running the notebook via `ssh`:* you may want to use `tensorboard` as well from your local machine. The process is the same as for `jupyter`, open a new terminal in your machine and run the following command:
 
@@ -151,32 +153,38 @@ $ ssh -L 6006:localhost:6006 <username>@<vdi_ip>
 
 The GIT repo ‘CSBDeep’ you have previously cloned into ‘~/DL4MIA/CSBDeep’ contains multiple example notebooks:
 
-![Untitled](02_image_restoration/Untitled.png)
+![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled.png)
 
 Every example will be downloading all required training data and is itself divided into three individual notebooks that need to be executed in sequence. The denoising3D example is a good starting point, but you can really pick any of these if you find another one more interesting and more related to your own data.
 
 > **Note**: Some of the notebooks will have output cells in them. To get the full experience without spoilers, clear all outputs when first opening each notebook. In the jupyter menus, navigate to `Cell > All Outputs > Clear` . You can do the same for other exercises.
->
+> 
 
 **1_datagen.ipynb** - network training usually happens on batches of smaller sized images than the ones recorded on a microscope. Hence, this notebook loads all your image data and chops it into many smaller pieces and stores it into the sub-folder `data` (you can see that folder on the screenshot below, but likely not yet in your own example folder).
 Open this notebook, read all explanations, execute all cells, ask any questions that come up - then continue below...
 
-![Untitled](02_image_restoration/Untitled%201.png)
+![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%201.png)
 
 **2_training.ipynb** - this notebook will train your CARE network. All outputs will be put into the folder `models`. While you execute this notebook, see what files will be generated inside the models-folder.
 
 As you can see, the example notebooks are containing quite some additional explanations and some cells that have the purpose of showing you the data you are about to use and some sampled results. In this way you can be sure that the right things are happening.
-Once you reach the cell that is actually starting the network training, you can go ahead and use Tensorboard (as described in [here](https://www.notion.so/02-Image-Restoration-exercises-24de3b6276764d9fae60c96b1f3ab772)) to monitor the training process. If you did not change the default settings you will have between 10 and 20 minutes to play with Tensorboard before the training of your first CARE network will be done. Enjoy (and please ask questions if you have any)!
+Once you reach the cell that is actually starting the network training, you can go ahead and use Tensorboard (as described in [here](https://www.notion.so/DL4MIA-2023-02-Image-Restoration-exercises-c5cbac04823b4ced8690bbe31c14c832?pvs=21)) to monitor the training process. If you did not change the default settings you will have between 10 and 20 minutes to play with Tensorboard before the training of your first CARE network will be done. Enjoy (and please ask questions if you have any)!
 At the very bottom you see, that we can even even export a so-called *Tensorflow Saved Model*. Such a zip file contains all data and metadata to fully define a Tensorflow model, allowing us to use such a saved model to apply a trained CARE network to raw data from within Fiji.
 
 **3_prediction.ipynb** - the last of the three notebooks can be used to apply the network we have previously trained on any dataset you’d like to. Open the notebook and see what it does.
-**Note**: if you happen to run into weird out-of-memory errors, you will need to shutdown notebooks that occupy GPU memory but are likely not used any longer.
+**Note**: if you happen to run into weird out-of-memory errors, you will need to shutdown notebooks that occupy GPU memory but are likely not used any longer. 
 
 One good way to do so is by clicking on the ‘**Running**’-tab in Jupyter, then on the orange ‘**Shutdown**’-button next to the notebooks that are not longer needed:
 
-![Untitled](02_image_restoration/Untitled%202.png)
+![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%202.png)
 
 Alternatively, once you are done running a notebook, you should ‘Close and Halt’ from the *File* menu for the same outcome.
+
+If you still run into memory issues, try using smaller tiles, for example:
+
+```jsx
+restored = model.predict(x, axes, n_tiles=(1,32,32))
+```
 
 ---
 
@@ -204,13 +212,13 @@ Try to answer the following questions:
 ---
 
 > *Data by Reza Shahidi and Gaspar Jekely, Living Systems Institute, Exeter*
->
+> 
 
 > *Notebooks solutions adapted from similar exercises by Larissa Heinrich*
->
+> 
 
 > For this exercise, we have some notebooks available in [https://github.com/dl4mia/02_image_restoration](https://github.com/dl4mia/02_image_restoration) . Feel free to clone this repo.
->
+> 
 
 In this exercise you will start with raw data and decide for yourself how to train a CARE network but using the same scheme as Noise2Noise; using noisy images alone as input and as target. The data contains the same sample, imaged at different levels of noise, so choose carefully which one you should actually use.
 
@@ -226,22 +234,22 @@ In this exercise you will start with raw data and decide for yourself how to tra
     - Image 5 (6 in Fiji) is recorded with 5.0 $\mu$s scan time
     - Image 6 (7 in Fiji) is recorded with 5.0 $\mu$s scan time avg. of 4 images
 3. Make a copy of the **1_datagen.ipynb**. Rename it to **1_datagenSEM.ipynb**.
-
+    
     **Q**: How would you train a network to denoise images of 1$\mu$s scan time? Which images do you think could be used as input and which as target?
-
+    
 4. Open the `training.tif` and save respective images from the stack into the **`train/low`** and **`train/GT`** folders. Use the same name for the input and target images to pair them. You can use Fiji, or the **`imwrite`** function from **`tifffile`:**
-
-    ![Untitled](02_image_restoration/Untitled%203.png)
-
-5. Modify your **1_datagenSEM.ipynb** to work with your data and run it.
-
+    
+    ![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%203.png)
+    
+5. Modify your **1_datagenSEM.ipynb** to work with your data and run it. 
+    
     **Q**: You are using 2D images instead of 3D stacks now, what changes?
-
+    
 6. Make a copy of **2_training.ipynb**, modify it accordingly and train a network on your data.
 7. Make a copy of **3_prediction.ipynb** and modify it accordingly. Open `test.tif`, process it and look at the results for the different acquisition times.
-
-    ![Untitled](02_image_restoration/Untitled%204.png)
-
+    
+    ![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%204.png)
+    
 
 - Can you further improve your results by using the data differently or by tweaking the settings?
 - How could you train a single network to process all scan times? Be creative! Surprise us!
@@ -255,26 +263,24 @@ In this exercise you will start with raw data and decide for yourself how to tra
 Noise2Void allows training from single noisy images.
 
 > **Note*:*** you may use your own data if you have some noisy images with you…
->
+> 
 1. Clone the Noise2Void repository (for example in the same folder as CSBDeep):
-
+    
     ```bash
     $ git clone [https://github.com/juglab/n2v.git](https://github.com/juglab/n2v.git)
     ```
-
+    
     This repo contains all the sources that make N2V, but you clone it only to get your hands on the tutorials you will find within the exercises folder...
-
-    > **Note**: Ideally, we should create a new environment for N2V, but env creation in the VDI is long and to save some time we configured the environments to be somewhat compatible, so we will use the same as in the previous exercises.
-    >
+    
 2. Activate the care env and install N2V via pip, like so:
-
+    
     ```bash
     $ pip install n2v
     ```
-
+    
     *Side Notes: (i)* installing N2V also into the `care` conda environment is not optimal if you intend to use CARE more often and installation of both packages is not always possible. Some tools you will use might depend on different Tensorflow versions or different and incompatible versions of other dependencies. If you want to use create a conda env for CARE alone, ask Nuno for the version and combination of packages to do so *(ii)* In addition to the installation instructions online, we also installed `tensorboard` and `nb_conda`… Why? Because we love them and want to use them!!! *(iii)* But… wait a sec… we didn’t even install `jupyter`… what is going on? By installing `nb_conda`, `jupyter` is actually a dependency, hence, it got installed for that reason.
-
-3. Start `jupyter` and have a look at the `examples/2D/denoising2D_SEM/01_training.ipynb` ****and ****`examples/2D/denoising2D_SEM/02_prediction.ipynb` ****notebooks. Some things are different from CARE, *i.e.* there is no **01_datagen.ipynb** notebook, but the overall spirit really is the same. Make sure you understand all the steps. Ask us if you don’t.
+    
+3. Start `jupyter` and have a look at the `examples/2D/denoising2D_SEM/01_training.ipynb` ****and ****`examples/2D/denoising2D_SEM/02_prediction.ipynb` ****notebooks  in the N2V examples folder. Some things are different from CARE, *i.e.* there is no **01_datagen.ipynb** notebook, but the overall spirit really is the same. Make sure you understand all the steps. Ask us if you don’t.
 4. During training (about 15 min): ask us for details you didn’t fully grasp. Or start `tensorboard` ****and follow the learning progress! (If you forgot how, figure it out!)
 5. If you have your own data, replace `train.tif` and `test.tif` with your own data. Play with the parameters and have fun. (*Pro tip:* copy any of the exercise folders, name it in a sensible way, then change the contained notebooks to suit your needs…)
 
@@ -296,30 +302,31 @@ Below we will give you a noise model for the first network to train and then boo
 
 - Note: Our PN2V implementation is written in pytorch, not Keras/TF.
 - Note: PN2V experienced multiple “updates” regarding noise model representations. Hence, the original PN2V repository is not any more the one we suggest to use… (despite it of course working just as described in the original publication…)
-1. Clone our **PPN2V** repository (the one repo that can do it all):
-
+1. Clone our **PPN2V** repository (the one repo that can do it all): 
+    
     ```bash
     $ git clone [https://github.com/juglab/PPN2V.git](https://github.com/juglab/PPN2V.git)
     ```
-
+    
     *Info*: In the readme on GitHub, installing PPN2V is currently suggested via a `yaml` file that specifies all required dependencies. This would mean to do something like the command below (**don’t do it though, go right to the next point**):
-
+    
     ```bash
     $ conda env create -f ppn2vEnvironment.yml
     ```
-
+    
     > **Note:** don’t do it! These instructions do not run in our VDI !!
-    >
-2. On our VDI, we run the latest CUDA and the yaml file provided on GitHub leads to trouble (some versions specified in there are too old for CUDA 11). If you try to install and run methods you find on GitHub, these kinds of things happen all the time and are at times very annoying to figure out and fix. In order to get PPN2V to run, we just install stuff by hand:
-
+    > 
+2. On our VDI, we run the latest CUDA and the yaml file provided on GitHub leads to trouble (some versions specified in there are too old for CUDA 11). If you try to install and run methods you find on GitHub, these kinds of things happen all the time and are at times very annoying to figure out and fix. In order to get PPN2V to run, we just install stuff by hand
+    
     ```bash
-    $ conda create -n ppn2v python=3.7
+    $ conda create -n ppn2v python=3.9
     $ conda activate ppn2v
-    $ conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch -c nvidia
-    $ conda install nb_conda tifffile matplotlib scipy
+    $ conda install pytorch torchvision pytorch-cuda=11.8 'numpy<1.24' scipy matplotlib tifffile jupyter -c pytorch -c nvidia
+    $ pip install git+https://github.com/juglab/PPN2V.git
     ```
+    
 
-3. Note how sneakily I made you install nb_conda again? Why did I not also make you install Tensorboard???
+1. Note how sneakily I made you install nb_conda again? Why did I not also make you install Tensorboard?
 
 Ok, now that we have installed all we need for (P)PN2V, let’s do something cool with it!
 Remember that the difference between N2V and PN2V is that we use a noise model? Importantly, we can record data at the microscope that allows us to get such a noise model. However, we can’t do that during the course, but we can run through an example that comes with all required noise model data:
@@ -338,7 +345,7 @@ Remember that the difference between N2V and PN2V is that we use a noise model? 
 
 ---
 
-DivNoising is one of the latest unsupervised denoising methods and follows a quite different approach. Instead of a U-Net, DivNoising employs the power of a Variational Auto-Encover (VAE), but adds the use of a noise model to it in a suitable way.
+DivNoising is one of the latest unsupervised denoising methods and follows a quite different approach. Instead of a U-Net, DivNoising employs the power of a Variational Auto-Encover (VAE), but adds the use of a noise model to it in a suitable way. 
 
 This approach comes with an extra perk: you will be able to sample diverse interpretations of a noisy image. Why is that cool, you ask? Easy:
 
@@ -350,21 +357,21 @@ Since this is a bonus exercise and you are a pro by now, we will keep the instru
 For our VDI, we have to slightly change the installation instructions and have to install all the packages manually. It may look uglier than previous installations, but it is for a good cause!!
 
 1. Run the following commands in order to install DivNoising
-
+    
     ```bash
-    $ conda create -n DivNoising python=3.7
-    $ conda activate DivNoising
-    $ conda install nb_conda tifffile matplotlib scipy tensorboard pytorch torchvision cudatoolkit=11.3 -c pytorch -c nvidia
-    $ pip install tqdm sklearn pytorch-lightning
+    $ conda create -n divnoising python=3.7
+    $ conda activate divnoising
+    $ conda install nb_conda tifffile matplotlib scipy scikit-learn
+    $ pip install pytorch-lightning==1.2.10
     ```
-
+    
 2. In normal conditions, simply follow the installation instructions you find in the readme on GitHub.
     1. Yes, the author of DivNoising and the readme installs things slightly differently than we are used to by now… just follow his advice, you will be fine…
 3. Now start jupyter, just as we did in all the exercises before…
 4. Follow the good advice in the readme and run through the Convallaria example
 
 > *Side note:* DivNoising is based on pytorch, but it is using a library called PyTorch Lightning. Why should you care? I tell you: you can use Tensorboard to follow the training progress of your DivNoising network! Yay!
->
+> 
 
 ---
 
@@ -374,7 +381,7 @@ For our VDI, we have to slightly change the installation instructions and have t
 
 This exercise sheet will introduce you to [ZeroCostDL4Mic](https://github.com/HenriquesLab/ZeroCostDL4Mic/wiki), a toolbox for the training and implementation of common Deep Learning approaches to microscopy imaging. It exploits the ease-of-use and access to GPU provided by [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb).
 
-![Untitled](02_image_restoration/Untitled%205.png)
+![Untitled](DL4MIA%202023%2002%20-%20Image%20Restoration%20exercises%20c5cbac04823b4ced8690bbe31c14c832/Untitled%205.png)
 
 ---
 
